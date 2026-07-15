@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DEFAULT_WIDTHS_COLUMNS, MAX_COLUMN_WIDTH, MIN_COLUMN_WIDTH } from "@shared/ui/model/table.config.js";
+import { DEFAULT_WIDTHS_COLUMNS, MAX_COLUMN_WIDTH, MIN_COLUMN_WIDTH } from "@shared/ui/ui-table/model/table.config.js";
 
 export const useResizeColumns = () => {
     const [columnWidths, setColumnWidths] = useState(DEFAULT_WIDTHS_COLUMNS);

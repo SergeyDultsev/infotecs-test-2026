@@ -1,28 +1,28 @@
 import { observer } from 'mobx-react-lite';
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import styles from "./HomePage.module.scss";
-import { useUsers } from "@features/users/get-users/index.js";
-import { userStore } from "@entities/users/model/userStore.js";
 import { USER_COLUMNS } from "@pages/home-page/model/homePage.config.js";
-import { TableDefault } from "@shared/ui/ui-table/ui/TableDefault.jsx";
+import { TableDefault } from "@shared/index.js";
+import { SearchBar } from "@features/users/search-users/ui/search-bar/SearchBar.jsx";
+import {useHomePage} from "@pages/home-page/hooks/useHomePage.js";
 
 export const HomePage = observer(() => {
-    const { data, error, isLoading } = useUsers();
-
-    useEffect(() => {
-        if (data?.users) {
-            userStore.setUsers(data.users);
-        }
-    }, [data]);
-
-    const users = userStore.getUsers;
+    const {
+        users,
+        isLoading,
+        error,
+        onSearch
+    } = useHomePage();
 
     if (isLoading) return <Fragment>Загрузка...</Fragment>;
     if (error) return <Fragment>Ошибка: {error.message} <Link className="link" to={'/'}>На главную</Link></Fragment>;
 
     return (
         <div className={styles['home-page']}>
+            <SearchBar
+                onSearch={onSearch}
+            />
             <TableDefault
                 columns={USER_COLUMNS}
                 data={users}

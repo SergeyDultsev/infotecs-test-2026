@@ -1,0 +1,15 @@
+.input {
+
+  &__search {
+    padding: 12px 20px;
+    font-size: 14px;
+    color: var(--color-text);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    width: 100%;
+  }
+
+  &__search::placeholder {
+    color: var(--color-text);
+  }
+}

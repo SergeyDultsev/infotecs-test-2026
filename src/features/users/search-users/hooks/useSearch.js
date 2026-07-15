@@ -1,32 +1,36 @@
 import { useEffect, useState } from 'react';
-import { fetchUsers } from '@entities/users';
+import { searchUsers } from '@entities/users';
 
-export const useUsers = () => {
+export const useSearch = (queryValue) => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
-    const [isLoading, setLoading] = useState(true);
+    const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
+        if (!queryValue) {
+            return;
+        }
+
         const load = async () => {
             setLoading(true);
             setError(null);
 
             try {
-                const data = await fetchUsers();
+                const data = await searchUsers(queryValue);
                 setData(data);
-            } catch (error) {
-                setError(error.message);
+            } catch (e) {
+                setError(e);
             } finally {
                 setLoading(false);
             }
         };
 
         load();
-    }, []);
+    }, [queryValue]);
 
     return {
         data,
         error,
-        isLoading
+        isLoading,
     };
 };
