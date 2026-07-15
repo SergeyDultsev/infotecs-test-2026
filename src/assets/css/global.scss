@@ -1,0 +1,40 @@
+@use './variables' as *;
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  color: $color-text;
+  background-color: $color-bg;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $font-weight-semibold;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: $container-max-width;
+  margin-left: auto;
+  margin-right: auto;
+}
