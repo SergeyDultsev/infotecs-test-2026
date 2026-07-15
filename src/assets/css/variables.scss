@@ -24,6 +24,7 @@ $color-black: #000000;
 $color-text: $color-gray-900;
 $color-text-secondary: $color-gray-500;
 $color-text-placeholder: $color-gray-400;
+$color-text-white: $color-white;
 
 $color-bg: $color-white;
 $color-bg-secondary: $color-gray-50;
@@ -77,6 +78,7 @@ $container-max-width: 1400px;
   --color-primary: #{$color-primary};
   --color-primary-hover: #{$color-primary-hover};
   --color-text: #{$color-text};
+  --color-text-white: #{$color-text-white};
   --color-text-secondary: #{$color-text-secondary};
   --color-bg: #{$color-bg};
   --color-bg-secondary: #{$color-bg-secondary};

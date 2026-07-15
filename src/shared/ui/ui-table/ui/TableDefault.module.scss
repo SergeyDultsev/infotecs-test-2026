@@ -1,0 +1,64 @@
+.table-wrapper {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  table-layout: fixed;
+
+  &__head {
+    background-color: var(--color-primary);
+  }
+
+  &__row {
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  &__header {
+    text-align: left;
+    padding: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 50px;
+    position: relative;
+    background-color: var(--color-primary);
+    color: var(--color-text-white);
+    user-select: none;
+  }
+
+  &__body {
+    background-color: var(--color-bg);
+  }
+
+  &__cell {
+    border: 1px solid var(--color-border);
+    font-size: 14px;
+    padding: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 50px;
+    position: relative;
+  }
+}
+
+.resize-handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  cursor: col-resize;
+  user-select: none;
+  background-color: transparent;
+
+  &:hover,
+  &:active {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+}
