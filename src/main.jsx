@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import '@assets/css/main.scss';
 import App from './app/index.jsx'
 import RootProviders from "@app/providers/RootProviders.jsx";
 

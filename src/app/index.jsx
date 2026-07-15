@@ -3,7 +3,7 @@ import { routers } from "@app/router/index.jsx";
 
 const App = () => {
   return (
-      <>
+      <section className="container">
           <Routes>
               {routers.map(route => (
                   <Route
@@ -13,7 +13,7 @@ const App = () => {
                   />
               ))}
           </Routes>
-      </>
+      </section>
   )
 }
 
