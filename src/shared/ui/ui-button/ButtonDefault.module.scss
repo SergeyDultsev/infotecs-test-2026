@@ -4,8 +4,8 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    font-size: 14px;
-    padding: 10px 7px;
+    font-size: var(--font-size-sm);
+    padding: 10px 8px;
     color: var(--color-text-white);
     background-color: var(--color-primary);
     border-radius: var(--radius-md);
@@ -17,5 +17,10 @@
     background-color: var(--color-primary-hover);
     border-radius: var(--radius-md);
     transition: var(--transition-base);
+  }
+
+  &__default:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 }

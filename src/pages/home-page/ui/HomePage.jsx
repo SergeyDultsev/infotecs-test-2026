@@ -8,9 +8,13 @@ import { SearchBar } from "@features/users/search-users/ui/search-bar/SearchBar.
 import { useHomePage } from "@pages/home-page/hooks/useHomePage.js";
 import { useSearchQuery } from "@pages/home-page/hooks/useSearchQuery.js";
 import { userStore } from "@entities/users/model/userStore.js";
+import { Pagination } from "@shared/ui/ui-pagination/Pagination.jsx";
 
 export const HomePage = observer(() => {
     const users = userStore.getUsers;
+    const { currentPage, limit } = userStore;
+    const offset = (currentPage - 1) * limit;
+    const paginatedUsers = users.slice(offset, offset + limit);
 
     const {
         isLoading,
@@ -40,8 +44,10 @@ export const HomePage = observer(() => {
             />
             <TableDefault
                 columns={USER_COLUMNS}
-                data={users}
+                data={paginatedUsers}
             />
+
+            <Pagination />
         </div>
     );
 });
