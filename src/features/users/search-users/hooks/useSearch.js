@@ -1,24 +1,29 @@
 import { useEffect, useState} from 'react';
-import { searchUsers } from '@entities/users';
+import { searchUsers, fetchUsers } from '@entities/users';
+import { useNavigate } from "react-router-dom";
 
 export const useSearch = (queryValue) => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [isLoading, setLoading] = useState(false);
 
-    useEffect(() => {
-        if (!queryValue) {
-            setData(null);
-            return;
-        }
+    const navigate = useNavigate();
 
+    useEffect(() => {
         const load = async () => {
             setLoading(true);
             setError(null);
 
             try {
-                const response = await searchUsers(queryValue);
-                setData(response.users);
+                if (!queryValue) {
+                    navigate('/');
+
+                    const response = await fetchUsers();
+                    setData(response.users);
+                } else {
+                    const response = await searchUsers(queryValue);
+                    setData(response.users);
+                }
             } catch (e) {
                 setError(e);
             } finally {
