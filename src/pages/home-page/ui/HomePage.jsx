@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react-lite';
-import {Fragment, useEffect} from "react";
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import styles from "./HomePage.module.scss";
 import { USER_COLUMNS } from "@pages/home-page/model/homePage.config.js";
-import { TableDefault, useDebounce } from "@shared/index.js";
+import { TableDefault } from "@shared/index.js";
 import { SearchBar } from "@features/users/search-users/ui/search-bar/SearchBar.jsx";
 import { useHomePage } from "@pages/home-page/hooks/useHomePage.js";
 import { useSearchQuery } from "@pages/home-page/hooks/useSearchQuery.js";
@@ -22,12 +22,8 @@ export const HomePage = observer(() => {
         setQuery,
         isLoadingSearch,
         errorSearch,
-        onSearch
+        handleSearch,
     } = useSearchQuery();
-
-    const handleSearch = useDebounce((searchQuery) => {
-       onSearch(searchQuery);
-    });
 
     const e = error || errorSearch;
     const isLoader = isLoading || isLoadingSearch;

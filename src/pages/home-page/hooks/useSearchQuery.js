@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { userStore } from "@entities/users/model/userStore.js";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useSearch } from "@features/users/index.js";
+import { useDebounce } from "@shared";
 
 export const useSearchQuery = () => {
     const [query, setQuery] = useState('');
@@ -21,6 +22,10 @@ export const useSearchQuery = () => {
         navigate(`/?q=${query}`);
     };
 
+    const handleSearch = useDebounce((searchQuery) => {
+        onSearch(searchQuery);
+    });
+
     return {
         query,
         setQuery,
@@ -28,5 +33,6 @@ export const useSearchQuery = () => {
         isLoadingSearch,
         errorSearch,
         onSearch,
+        handleSearch,
     };
 }
