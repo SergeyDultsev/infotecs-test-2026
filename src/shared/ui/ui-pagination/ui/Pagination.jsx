@@ -15,7 +15,7 @@ export const Pagination = observer(() => {
         <div className={styles['pagination-list']}>
             <ButtonDefault
                 icon={<LeftIcon />}
-                onClick={userStore.prevPage}
+                onClick={() => userStore.prevPage()}
                 disabled={userStore.currentPage <= 1}
             />
 
@@ -59,7 +59,7 @@ export const Pagination = observer(() => {
 
             <ButtonDefault
                 icon={<RightIcon />}
-                onClick={userStore.nextPage}
+                onClick={() => userStore.nextPage()}
                 disabled={userStore.currentPage >= userStore.totalPages}
             />
         </div>
