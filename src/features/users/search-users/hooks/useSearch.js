@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState} from 'react';
 import { searchUsers } from '@entities/users';
 
 export const useSearch = (queryValue) => {
@@ -8,6 +8,7 @@ export const useSearch = (queryValue) => {
 
     useEffect(() => {
         if (!queryValue) {
+            setData(null);
             return;
         }
 
@@ -16,8 +17,8 @@ export const useSearch = (queryValue) => {
             setError(null);
 
             try {
-                const data = await searchUsers(queryValue);
-                setData(data);
+                const response = await searchUsers(queryValue);
+                setData(response.users);
             } catch (e) {
                 setError(e);
             } finally {
@@ -32,5 +33,6 @@ export const useSearch = (queryValue) => {
         data,
         error,
         isLoading,
+        queryValue,
     };
 };

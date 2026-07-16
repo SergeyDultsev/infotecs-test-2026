@@ -77,6 +77,8 @@ $container-max-width: 1400px;
 :root {
   --color-primary: #{$color-primary};
   --color-primary-hover: #{$color-primary-hover};
+  --color-secondary: #{$color-secondary};
+  --color-secondary-hover: #{$color-secondary-hover};
   --color-text: #{$color-text};
   --color-text-white: #{$color-text-white};
   --color-text-secondary: #{$color-text-secondary};

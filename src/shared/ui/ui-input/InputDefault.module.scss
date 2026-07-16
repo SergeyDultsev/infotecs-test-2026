@@ -12,4 +12,8 @@
   &__search::placeholder {
     color: var(--color-text);
   }
+
+  &__search:focus {
+    background-color: var(--color-primary-hover);
+  }
 }
