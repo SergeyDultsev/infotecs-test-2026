@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import styles from "./Pagination.module.scss";
 import { userStore } from "@entities/users/model/userStore.js";
-import { ButtonDefault, PAGINATION_VISIBLE_COUNT } from "@shared";
+import { ButtonDefault, LeftIcon, RightIcon, PAGINATION_VISIBLE_COUNT } from "@shared";
 import { useVisiblePages} from "@shared/ui/ui-pagination/utils/useVisiblePages.js";
 
 export const Pagination = observer(() => {
@@ -14,7 +14,7 @@ export const Pagination = observer(() => {
     return (
         <div className={styles['pagination-list']}>
             <ButtonDefault
-                text={'<'}
+                icon={<LeftIcon />}
                 onClick={userStore.prevPage}
                 disabled={userStore.currentPage <= 1}
             />
@@ -58,7 +58,7 @@ export const Pagination = observer(() => {
             )}
 
             <ButtonDefault
-                text={'>'}
+                icon={<RightIcon />}
                 onClick={userStore.nextPage}
                 disabled={userStore.currentPage >= userStore.totalPages}
             />

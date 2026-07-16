@@ -1,4 +1,4 @@
-import { InputDefault, ButtonDefault } from '@/shared';
+import { InputDefault, ButtonDefault, SearchIcon, FilterIcon } from '@/shared';
 import style from './SearchBar.module.scss';
 
 export const SearchBar = ({
@@ -29,7 +29,10 @@ export const SearchBar = ({
             />
             <ButtonDefault
                 onClick={() => onSearch(query)}
-                text={'Поиск'}
+                icon={<SearchIcon />}
+            />
+            <ButtonDefault
+                icon={<FilterIcon />}
             />
         </div>
     );
