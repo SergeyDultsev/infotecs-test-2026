@@ -1,0 +1,1 @@
+export { PAGINATION_VISIBLE_COUNT, PAGINATION_LIMIT } from './api.config.js';

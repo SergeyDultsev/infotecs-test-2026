@@ -1,10 +1,11 @@
-import { makeAutoObservable  } from 'mobx';
+import { makeAutoObservable } from 'mobx';
+import { PAGINATION_LIMIT } from "@shared";
 
 class UserStore {
     users = [];
-    limit = 30;
-    currentPage = null;
-    total = null;
+    limit = PAGINATION_LIMIT;
+    currentPage = 1;
+    total = 0;
 
     constructor() {
         makeAutoObservable(this);
@@ -15,15 +16,27 @@ class UserStore {
     }
 
     setCurrentPage(currentPage) {
-        this.currentPage = currentPage;
+        if (currentPage >= 1) this.currentPage = currentPage;
     }
 
     setTotal(total) {
         this.total = total;
     }
 
-    get getPagination() {
-        return Array.from({ length: this.total ?? 0 }, (_, i) => i + 1);
+    prevPage() {
+        if (this.currentPage > 1) {
+            this.currentPage--;
+        }
+    }
+
+    nextPage() {
+        if (this.currentPage < this.totalPages) {
+            this.currentPage++;
+        }
+    }
+
+    get totalPages() {
+        return Math.ceil(this.total / this.limit);
     }
 
     get getUsers() {

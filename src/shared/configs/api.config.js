@@ -1,0 +1,2 @@
+export const PAGINATION_VISIBLE_COUNT = 5;
+export const PAGINATION_LIMIT = 20;
