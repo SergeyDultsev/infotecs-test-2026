@@ -22,8 +22,8 @@ export const useSearchQuery = () => {
         navigate(`/?q=${query}`);
     };
 
-    const handleSearch = useDebounce((searchQuery) => {
-        onSearch(searchQuery);
+    const onSearchDebounce = useDebounce((searchQuery) => {
+        if (searchQuery.length >= 3) onSearch(searchQuery);
     });
 
     return {
@@ -33,6 +33,6 @@ export const useSearchQuery = () => {
         isLoadingSearch,
         errorSearch,
         onSearch,
-        handleSearch,
+        onSearchDebounce,
     };
 }

@@ -23,7 +23,8 @@ export const HomePage = observer(() => {
         setQuery,
         isLoadingSearch,
         errorSearch,
-        handleSearch,
+        onSearch,
+        onSearchDebounce,
     } = useSearchQuery();
 
     const e = error || errorSearch;
@@ -36,7 +37,8 @@ export const HomePage = observer(() => {
         <div className={styles['home-page']}>
             <SearchBar
                 query={query}
-                onSearch={handleSearch}
+                onSearch={onSearch}
+                onSearchDebounce={onSearchDebounce}
                 setQuery={setQuery}
             />
 

@@ -5,10 +5,11 @@ export const SearchBar = ({
     query,
     setQuery,
     onSearch,
+    onSearchDebounce,
 }) => {
 
-    const handleKayEnter = (e) => {
-      if (e.key === 'Enter') {
+    const handleKeyEnter = (e) => {
+      if (e.key === 'Enter' && query) {
           onSearch(query);
       }
     }
@@ -21,9 +22,9 @@ export const SearchBar = ({
                 onChange={(event) => {
                     const value = event.target.value;
                     setQuery(value);
-                    onSearch(value);
+                    onSearchDebounce(value);
                 }}
-                onKeyPress={handleKayEnter}
+                onKeyPress={handleKeyEnter}
                 type="text"
                 placeholder="Поиск"
             />
