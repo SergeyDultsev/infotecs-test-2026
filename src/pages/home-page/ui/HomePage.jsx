@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite';
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
 import styles from "./HomePage.module.scss";
 import { USER_COLUMNS } from "@pages/home-page/model/homePage.config.js";
 import { TableDefault } from "@shared/index.js";
@@ -11,10 +10,7 @@ import { userStore } from "@entities/users/model/userStore.js";
 import { Pagination } from "@shared/ui/ui-pagination/ui/Pagination.jsx";
 
 export const HomePage = observer(() => {
-    const users = userStore.getUsers;
-    const { currentPage, limit } = userStore;
-    const offset = (currentPage - 1) * limit;
-    const paginatedUsers = users.slice(offset, offset + limit);
+    const paginatedUsers = userStore.paginatedUsers;
 
     const {
         isLoading,
@@ -33,7 +29,7 @@ export const HomePage = observer(() => {
     const isLoader = isLoading || isLoadingSearch;
 
     if (isLoader) return <Fragment>Загрузка...</Fragment>;
-    if (e) return <Fragment>Ошибка: {e.message} <Link className="link" to={'/'}>На главную</Link></Fragment>;
+    if (e) return <Fragment>Ошибка: {e}</Fragment>;
 
     return (
         <div className={styles['home-page']}>
@@ -47,7 +43,13 @@ export const HomePage = observer(() => {
                 data={paginatedUsers}
             />
 
-            <Pagination />
+            <Pagination
+                currentPage={userStore.currentPage}
+                totalPages={userStore.totalPages}
+                onPageChange={(page) => userStore.setCurrentPage(page)}
+                onPrev={() => userStore.prevPage()}
+                onNext={() => userStore.nextPage()}
+            />
         </div>
     );
 });

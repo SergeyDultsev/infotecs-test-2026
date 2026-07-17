@@ -25,7 +25,7 @@ export const useSearch = (queryValue) => {
                     setData(response.users);
                 }
             } catch (e) {
-                setError(e);
+                setError(e?.message || 'Неизвестная ошибка');
             } finally {
                 setLoading(false);
             }

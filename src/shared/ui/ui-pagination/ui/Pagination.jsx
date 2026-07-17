@@ -1,13 +1,17 @@
-import { observer } from "mobx-react-lite";
 import styles from "./Pagination.module.scss";
-import { userStore } from "@entities/users/model/userStore.js";
 import { ButtonDefault, LeftIcon, RightIcon, PAGINATION_VISIBLE_COUNT } from "@shared";
 import { useVisiblePages} from "@shared/ui/ui-pagination/utils/useVisiblePages.js";
 
-export const Pagination = observer(() => {
+export const Pagination = ({
+    currentPage,
+    totalPages,
+    onPageChange,
+    onPrev,
+    onNext,
+}) => {
     const { start, end, pages } = useVisiblePages(
-        userStore.currentPage,
-        userStore.totalPages,
+        currentPage,
+        totalPages,
         PAGINATION_VISIBLE_COUNT
     );
 
@@ -15,15 +19,15 @@ export const Pagination = observer(() => {
         <div className={styles['pagination-list']}>
             <ButtonDefault
                 icon={<LeftIcon />}
-                onClick={() => userStore.prevPage()}
-                disabled={userStore.currentPage <= 1}
+                onClick={onPrev}
+                disabled={currentPage <= 1}
             />
 
             {start > 1 && (
                 <>
                     <div
                         className={styles['pagination-item']}
-                        onClick={() => userStore.setCurrentPage(1)}
+                        onClick={() => onPageChange(1)}
                     >
                         1
                     </div>
@@ -35,33 +39,33 @@ export const Pagination = observer(() => {
                 <div
                     key={page}
                     className={
-                        userStore.currentPage === page
+                        currentPage === page
                             ? `${styles['pagination-item']} ${styles['pagination-item__active']}`
                             : styles['pagination-item']
                     }
-                    onClick={() => userStore.setCurrentPage(page)}
+                    onClick={() => onPageChange(page)}
                 >
                     {page}
                 </div>
             ))}
 
-            {end < userStore.totalPages && (
+            {end < totalPages && (
                 <>
-                    {end < userStore.totalPages - 1 && <span className={styles['pagination-ellipsis']}>...</span>}
+                    {end < totalPages - 1 && <span className={styles['pagination-ellipsis']}>...</span>}
                     <div
                         className={styles['pagination-item']}
-                        onClick={() => userStore.setCurrentPage(userStore.totalPages)}
+                        onClick={() => onPageChange(totalPages)}
                     >
-                        {userStore.totalPages}
+                        {totalPages}
                     </div>
                 </>
             )}
 
             <ButtonDefault
                 icon={<RightIcon />}
-                onClick={() => userStore.nextPage()}
-                disabled={userStore.currentPage >= userStore.totalPages}
+                onClick={onNext}
+                disabled={currentPage >= totalPages}
             />
         </div>
     );
-});
+};

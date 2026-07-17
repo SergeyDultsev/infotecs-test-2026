@@ -36,11 +36,12 @@ class UserStore {
     }
 
     get totalPages() {
-        return Math.ceil(this.total / this.limit);
+        return Math.ceil(this.users.length / this.limit) || 1;
     }
 
-    get getUsers() {
-        return this.users;
+    get paginatedUsers() {
+        const offset = (this.currentPage - 1) * this.limit;
+        return this.users.slice(offset, offset + this.limit);
     }
 }
 
