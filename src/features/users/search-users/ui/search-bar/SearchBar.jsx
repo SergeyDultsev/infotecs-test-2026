@@ -24,7 +24,7 @@ export const SearchBar = ({
                     setQuery(value);
                     onSearchDebounce(value);
                 }}
-                onKeyPress={handleKeyEnter}
+                onKeyDown={handleKeyEnter}
                 type="text"
                 placeholder="Поиск"
             />

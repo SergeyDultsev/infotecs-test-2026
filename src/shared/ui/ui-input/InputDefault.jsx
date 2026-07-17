@@ -1,6 +1,6 @@
 import InputStyle from './InputDefault.module.scss';
 
-export const InputDefault = ({ value, onChange, type, placeholder, variant }) => {
+export const InputDefault = ({ value, onChange, type, placeholder, variant, onKeyDown }) => {
     return (
         <input
             className={InputStyle[`input__${variant}`]}
@@ -8,6 +8,7 @@ export const InputDefault = ({ value, onChange, type, placeholder, variant }) =>
             onChange={onChange}
             placeholder={placeholder}
             type={type}
+            onKeyDown={onKeyDown}
         />
     );
 };
