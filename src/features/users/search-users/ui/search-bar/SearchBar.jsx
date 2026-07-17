@@ -26,7 +26,7 @@ export const SearchBar = ({
                 }}
                 onKeyDown={handleKeyEnter}
                 type="text"
-                placeholder="Поиск"
+                placeholder="Поиск пользователей"
             />
             <ButtonDefault
                 onClick={() => onSearch(query)}

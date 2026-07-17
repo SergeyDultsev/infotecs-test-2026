@@ -19,6 +19,7 @@ export const useSearchQuery = () => {
     }, [data]);
 
     const onSearch = (query) => {
+        if (!query) return;
         navigate(`/?q=${query}`);
     };
 

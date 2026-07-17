@@ -1,6 +1,8 @@
 import style from './UserModal.module.scss';
 
 export const UserModal = ({user}) => {
+
+    console.log(user)
     return (
         <section className={style['user-modal']}>
             <h2 className={style['user-modal__name']}>{user.firstName} {user.lastName}</h2>
@@ -9,9 +11,11 @@ export const UserModal = ({user}) => {
             <div className={style['user-modal__info']}>
                 <p className={style['user-modal__info-text']}>Email: {user.email}</p>
                 <p className={style['user-modal__info-text']}>Age: {user.age}</p>
+                <p className={style['user-modal__info-text']}>Role: {user.role}</p>
                 <p className={style['user-modal__info-text']}>Gender: {user.gender}</p>
                 <p className={style['user-modal__info-text']}>Email: {user.email}</p>
                 <p className={style['user-modal__info-text']}>Phone: {user.phone}</p>
+                <p className={style['user-modal__info-text']}>Address: {user.address?.address}, {user.address?.city}</p>
             </div>
         </section>
     );
