@@ -2,7 +2,7 @@ import style from './TableDefault.module.scss';
 import { useResizeColumns } from '@shared/ui/ui-table/utils/useResizeColumns.js';
 import { observer } from 'mobx-react-lite';
 
-export const TableDefault = observer(({ columns, data }) => {
+export const TableDefault = observer(({ columns, data, onClick }) => {
     const { columnWidths, handleMouseDown } = useResizeColumns();
 
     return (
@@ -36,6 +36,7 @@ export const TableDefault = observer(({ columns, data }) => {
                                 key={col.key}
                                 className={style['table__cell']}
                                 style={{ width: columnWidths[index] }}
+                                onClick={() => onClick(item)}
                             >
                                 {col.render(item)}
                                 <div

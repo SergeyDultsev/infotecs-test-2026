@@ -4,7 +4,7 @@ import styles from "./HomePage.module.scss";
 import { USER_COLUMNS } from "@pages/home-page/model/homePage.config.js";
 import { TableDefault } from "@shared/index.js";
 import { SearchBar } from "@features/users/search-users/ui/search-bar/SearchBar.jsx";
-import { useHomePage } from "@pages/home-page/hooks/useHomePage.js";
+import { useHomePage } from "@pages/home-page/hooks/useHomePage.jsx";
 import { useSearchQuery } from "@pages/home-page/hooks/useSearchQuery.js";
 import { userStore } from "@entities/users/model/userStore.js";
 import { Pagination } from "@shared/ui/ui-pagination/ui/Pagination.jsx";
@@ -15,6 +15,7 @@ export const HomePage = observer(() => {
     const {
         isLoading,
         error,
+        handleOpenUserModal,
     } = useHomePage();
 
     const {
@@ -38,9 +39,11 @@ export const HomePage = observer(() => {
                 onSearch={handleSearch}
                 setQuery={setQuery}
             />
+
             <TableDefault
                 columns={USER_COLUMNS}
                 data={paginatedUsers}
+                onClick={handleOpenUserModal}
             />
 
             <Pagination
