@@ -12,6 +12,8 @@
     width: 100px;
     height: 100px;
     border-radius: var(--radius-50);
+    border: 1px solid var(--color-primary);
+    box-shadow: var(--shadow-xl);
   }
 
   &__info {

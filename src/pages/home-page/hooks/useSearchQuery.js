@@ -14,7 +14,9 @@ export const useSearchQuery = () => {
 
     useEffect(() => {
         if (data) {
-            userStore.setUsers(data);
+            userStore.setUsers(data.users);
+            userStore.setTotal(data.total);
+            userStore.setCurrentPage(1);
         }
     }, [data]);
 

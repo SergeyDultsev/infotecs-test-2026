@@ -1,8 +1,6 @@
 import style from './UserModal.module.scss';
 
 export const UserModal = ({user}) => {
-
-    console.log(user)
     return (
         <section className={style['user-modal']}>
             <h2 className={style['user-modal__name']}>{user.firstName} {user.lastName}</h2>

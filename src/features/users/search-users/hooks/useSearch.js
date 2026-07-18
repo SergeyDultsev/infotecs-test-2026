@@ -1,38 +1,44 @@
-import { useEffect, useState} from 'react';
-import { searchUsers, fetchUsers } from '@entities/users';
+import { useEffect, useState } from 'react';
+import { searchUsers } from '@entities/users';
 import { useNavigate } from "react-router-dom";
 
 export const useSearch = (queryValue) => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
-    const [isLoading, setLoading] = useState(false);
+    const [isLoading, setLoading] = useState(!!queryValue);
 
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (!queryValue) {
+            navigate('/');
+            return;
+        }
+
+        const controller = new AbortController();
+
         const load = async () => {
             setLoading(true);
             setError(null);
 
             try {
-                if (!queryValue) {
-                    navigate('/');
-
-                    const response = await fetchUsers();
-                    setData(response.users);
-                } else {
-                    const response = await searchUsers(queryValue);
-                    setData(response.users);
-                }
+                const response = await searchUsers(queryValue, { signal: controller.signal });
+                setData(response);
             } catch (e) {
-                setError(e?.message || 'Неизвестная ошибка');
+                if (e.name !== 'AbortError') {
+                    setError(e?.message || 'Неизвестная ошибка');
+                }
             } finally {
                 setLoading(false);
             }
         };
 
         load();
-    }, [queryValue]);
+
+        return () => {
+            controller.abort();
+        };
+    }, [queryValue, navigate]);
 
     return {
         data,

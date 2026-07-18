@@ -6,6 +6,9 @@ class UserStore {
     limit = PAGINATION_LIMIT;
     currentPage = 1;
     total = 0;
+    filterKey = null;
+    sortBy = null;
+    order = null;
 
     constructor() {
         makeAutoObservable(this);
@@ -35,13 +38,27 @@ class UserStore {
         }
     }
 
+    setFilter(key) {
+        this.filterKey = key;
+        this.currentPage = 1;
+    }
+
+    setSort(sortBy, order) {
+        this.sortBy = sortBy;
+        this.order = order;
+        this.currentPage = 1;
+    }
+
     get totalPages() {
-        return Math.ceil(this.users.length / this.limit) || 1;
+        return Math.ceil(this.total / this.limit) || 1;
     }
 
     get paginatedUsers() {
-        const offset = (this.currentPage - 1) * this.limit;
-        return this.users.slice(offset, offset + this.limit);
+        return this.users;
+    }
+
+    get skip() {
+        return (this.currentPage - 1) * this.limit;
     }
 }
 

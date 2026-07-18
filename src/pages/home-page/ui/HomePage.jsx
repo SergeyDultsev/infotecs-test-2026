@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { Fragment } from "react";
 import styles from "./HomePage.module.scss";
-import { USER_COLUMNS } from "@pages/home-page/model/homePage.config.js";
+import { USER_COLUMNS } from "@pages/home-page/config/home-page.config.js";
 import { TableDefault } from "@shared/index.js";
 import { SearchBar } from "@features/users/search-users/ui/search-bar/SearchBar.jsx";
 import { useHomePage } from "@pages/home-page/hooks/useHomePage.jsx";
@@ -16,6 +16,7 @@ export const HomePage = observer(() => {
         isLoading,
         error,
         handleOpenUserModal,
+        isSearchMode,
     } = useHomePage();
 
     const {
@@ -48,13 +49,15 @@ export const HomePage = observer(() => {
                 onClick={handleOpenUserModal}
             />
 
-            <Pagination
-                currentPage={userStore.currentPage}
-                totalPages={userStore.totalPages}
-                onPageChange={(page) => userStore.setCurrentPage(page)}
-                onPrev={() => userStore.prevPage()}
-                onNext={() => userStore.nextPage()}
-            />
+            {!isSearchMode && (
+                <Pagination
+                    currentPage={userStore.currentPage}
+                    totalPages={userStore.totalPages}
+                    onPageChange={(page) => userStore.setCurrentPage(page)}
+                    onPrev={() => userStore.prevPage()}
+                    onNext={() => userStore.nextPage()}
+                />
+            )}
         </div>
     );
 });

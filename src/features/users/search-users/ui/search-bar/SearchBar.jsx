@@ -1,5 +1,6 @@
-import { InputDefault, ButtonDefault, SearchIcon, FilterIcon } from '@/shared';
+import { InputDefault, ButtonDefault, SearchIcon, FilterIcon, useModal } from '@/shared';
 import style from './SearchBar.module.scss';
+import { FilterUserModal } from "@features/users/filter-users/index.js";;
 
 export const SearchBar = ({
     query,
@@ -7,11 +8,16 @@ export const SearchBar = ({
     onSearch,
     onSearchDebounce,
 }) => {
+    const { openModal } = useModal();
 
     const handleKeyEnter = (e) => {
       if (e.key === 'Enter' && query) {
           onSearch(query);
       }
+    }
+
+    const handleFilterModal = () => {
+        openModal(<FilterUserModal />);
     }
 
     return (
@@ -33,6 +39,7 @@ export const SearchBar = ({
                 icon={<SearchIcon />}
             />
             <ButtonDefault
+                onClick={handleFilterModal}
                 icon={<FilterIcon />}
             />
         </div>
