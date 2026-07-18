@@ -28,7 +28,11 @@ export const SearchBar = ({
                 onChange={(event) => {
                     const value = event.target.value;
                     setQuery(value);
-                    onSearchDebounce(value);
+                    if (!value) {
+                        onSearch('');
+                    } else {
+                        onSearchDebounce(value);
+                    }
                 }}
                 onKeyDown={handleKeyEnter}
                 type="text"

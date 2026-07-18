@@ -25,7 +25,14 @@ export const useUsers = (params) => {
             setError(null);
 
             try {
-                const result = await fetchUsers({ limit, skip, filterKey, sortBy, order, signal: controller.signal });
+                const result = await fetchUsers({
+                    limit,
+                    skip,
+                    filterKey,
+                    sortBy,
+                    order,
+                    signal: controller.signal
+                });
                 setData(result);
             } catch (error) {
                 if (error.name !== 'AbortError') {
