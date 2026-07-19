@@ -31,7 +31,6 @@ export const HomePage = observer(() => {
     const e = error || errorSearch;
     const isLoader = isLoading || isLoadingSearch;
 
-    if (isLoader) return <Fragment>Загрузка...</Fragment>;
     if (e) return <Fragment>Ошибка: {e}</Fragment>;
 
     return (
@@ -43,11 +42,15 @@ export const HomePage = observer(() => {
                 setQuery={setQuery}
             />
 
-            <TableDefault
-                columns={USER_COLUMNS}
-                data={paginatedUsers}
-                onClick={handleOpenUserModal}
-            />
+            {isLoader ? (
+                <Fragment>Загрузка...</Fragment>
+            ) : (
+                <TableDefault
+                    columns={USER_COLUMNS}
+                    data={paginatedUsers}
+                    onClick={handleOpenUserModal}
+                />
+            )}
 
             {!isSearchMode && (
                 <Pagination
