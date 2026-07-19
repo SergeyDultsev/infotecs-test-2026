@@ -22,4 +22,9 @@
     opacity: 0.5;
     cursor: not-allowed;
   }
+
+  &__active {
+    color: var(--color-text);
+    background-color: var(--color-bg-secondary);
+  }
 }

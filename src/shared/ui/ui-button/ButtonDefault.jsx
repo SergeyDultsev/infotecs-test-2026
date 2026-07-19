@@ -6,11 +6,17 @@ export const ButtonDefault = (
         text,
         icon,
         disabled,
+        isActive,
     }) =>
 {
+    const className = [
+        styles['btn__default'],
+        isActive && styles['btn__active'],
+    ].filter(Boolean).join(' ');
+
     return (
         <button
-            className={styles['btn__default']}
+            className={className}
             onClick={onClick}
             disabled={disabled}
         >
