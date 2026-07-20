@@ -1,16 +1,37 @@
-# React + Vite
+## Реализовано
+- Вывод пользователей в таблице
+- Сортировка по полям (имя, возраст)
+- Фильтрация по полу (мужчины, женщины)
+- Поиск (дебаунсом 300мс с минимальная длиной 3 символа, а также отправление по кнопке и Enter)
+- Пагинация
+- Модальное окно с деталями пользователя
+- Изменение ширины колонок таблицы (минимально 50px, максимально 150px)
+- Обработка ошибок HTTP-запросов (AbortController, отмена при размонтировании)
+- Ширина таблицы 100% экрана, ограничение 1400px
+- Только FetchAPI для HTTP-запросов
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Технологии
+- JS (React)
+- HTML
+- CSS/SCSS
+- Mobx
+- Feature-Sliced Design (FSD)
 
-Currently, two official plugins are available:
+## Установка
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+# Клонирование
+git clone https://github.com/SergeyDultsev/infotecs-test-2026
 
-## React Compiler
+# Создать .env
+copy .env.example .env
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Установка пакетов
+npm i
 
-## Expanding the ESLint configuration
+# Запуск сервера
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Источники
+- [DummyJSON](https://dummyjson.com/docs/users)
