@@ -5,7 +5,7 @@ import path from 'path';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/infotecs-test/",
+  base: "/infotecs-test-2026/",
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
